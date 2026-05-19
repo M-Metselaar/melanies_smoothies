@@ -47,9 +47,4 @@ if ingredients_list:
         st.success('Your Smoothie is ordered!', icon="✅")
     
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-st.write("API Status Code:", smoothiefroot_response.status_code)
-st.write("API Response Text:", smoothiefroot_response.text)
-try:
-    st.text(smoothiefroot_response.json())
-except requests.exceptions.JSONDecodeError:
-    st.error("Could not decode JSON from the API response. Please check the API Status Code and Response Text above for details.")
+sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
